@@ -2,31 +2,36 @@ import React, { Component } from 'react';
 import userImg from '../images/userImage.png';
 
 class LoginForm extends Component {
-    state = { contacts: [] }
+    state = { contacts: [], username: '' }
     render() { 
         console.log(this.state.contacts.id);
         return (
             <React.Fragment>
-                <form id="StudentForm" onSubmit={this.handleSubmit} /*method="get"*/ >
+                <form id="StudentForm" onSubmit={this.handleSubmit}  /*method="get"*/ >
                     <div className="imgContainter">
                         <img src={userImg} alt="Student" className="avatar"/>
                     </div>
                     <div className= "containerForm">
                         <label><b>Username: </b></label>
-                        <input type="text" name="uname" placeholder="Enter Username" />
+                        <input onChange={this.handleChange} type="text" name="uname" placeholder="Enter Username" required/>
                         <br></br>
                         <label><b>Password: </b></label>
-                        <input type="password" placeholder="Enter Password" required />
+                        <input type="password" name="pass" placeholder="Enter Password" required />
                         <br></br>
                         <button type="submit" >Login</button>
                     </div>
                     <div className="containerForm" >
-                        <button type= "button" className="cancelBtn">Cancel</button>
+                        <button onClick={this.handlePost} className="registerBtn">Register Name</button>
                     </div>
                 </form>
                 
             </React.Fragment>
         );
+    }
+    handleChange =(event) =>
+    {
+        event.preventDefault();
+        this.setState({username:event.target.value});
     }
     handleSubmit =(event) =>
     {
@@ -42,11 +47,12 @@ class LoginForm extends Component {
     }
     handleCatch = ()=>
     {
-        alert("Incorrect username or password!");
+        alert("Incorrect username");
         document.getElementById("StudentForm").reset();
     }
     handlePost = (event) =>
     {
+        let userName = this.state.username;
         event.preventDefault();
         fetch('http://localhost:51061/api/Users/',
         {
@@ -57,7 +63,7 @@ class LoginForm extends Component {
             },
             body: JSON.stringify({
                 id: 3,
-                name: 'Leandro',
+                name: userName,
                 email: 'leandro@bolivia.com',
                 phone: '888888',
                 role: 10

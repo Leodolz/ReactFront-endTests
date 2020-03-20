@@ -25,11 +25,11 @@ form {
     opacity: 0.8;
   }
   
-  .cancelBtn {
+  .registerBtn {
     width: 20%;
     height: 20%;
     padding: 10px 18px;
-    background-color: #f44336;
+    background-color: #28a3c2;
   }
   
   .imgContainer {
