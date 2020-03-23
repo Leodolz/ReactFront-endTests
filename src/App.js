@@ -10,9 +10,9 @@ class App extends Component{
     return (
       <div className="App">
        <Router>
-        <Route path="/" exact component={() => <LoginForm />} />
+        <Route path="/" exact component={() => <LoginForm auth={this.handleAuth}/>} />
         <Route path="/main" exact component={() => <Menu />} />
-      </Router>
+       </Router>
       </div>
     );
   }

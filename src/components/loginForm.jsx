@@ -2,9 +2,8 @@ import React, { Component } from 'react';
 import userImg from '../images/userImage.png';
 
 class LoginForm extends Component {
-    state = { contacts: [], username: '' }
+    state = { contacts: [], username: '', display:null }
     render() { 
-        console.log(this.state.contacts.id);
         return (
             <React.Fragment>
                 <form id="StudentForm" onSubmit={this.handleSubmit}  /*method="get"*/ >
@@ -41,9 +40,10 @@ class LoginForm extends Component {
         .then(result=>result.json())
         .then((data)=>{
             this.setState({contacts: data})
+            console.log(this.state.contacts.id);
+            window.location.assign('/main');
         })
         .catch(this.handleCatch);
-        
     }
     handleCatch = ()=>
     {
@@ -69,6 +69,7 @@ class LoginForm extends Component {
                 role: 10
             })
         })
+        console.log(this.state.username);
     }
 }
  
